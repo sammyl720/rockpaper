@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Rock from "../static/imgs/rock.jpg";
+import Paper from "../static/imgs/paper.jpg";
+import Scissor from "../static/imgs/scissor.jpg";
 
 const Controls = (props)=>{
   if(props.name === "player"){
@@ -16,6 +19,17 @@ const Controls = (props)=>{
 }
 
 class Player extends Component {
+    constructor(props){
+      super(props);
+      this.state = {
+        links:{
+          Rock: Rock,
+          Paper:Paper,
+          Scissor: Scissor,
+        }
+      }
+    }
+
     render() {
     return (
       <div className={"player-"+this.props.name}>
@@ -23,8 +37,16 @@ class Player extends Component {
           {this.props.name}
         </h3>
         <div>
-          {this.props.currentHand}
-          {/* <img src={"../static/imgs/"+ this.props.currentHand+".jpg"}alt={this.props.currentHand}/> */}
+          <h5>
+            {this.props.currentHand}
+          </h5>
+          <img 
+            src={this.state.links[[this.props.currentHand]]}
+           alt={this.props.currentHand}
+           width="80px"
+           height="100px"
+          
+           />
         </div>
         <Controls name={this.props.name}
         paperSelected={this.props.paperHandler}
@@ -32,6 +54,7 @@ class Player extends Component {
         rockSelected={this.props.rockHandler}
 
          />
+         <h5>Hands Won: {this.props.won}</h5>
       </div>
     );
   }

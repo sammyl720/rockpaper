@@ -38,6 +38,7 @@ class Board extends Component {
   
           }else{
             players[0].result = "Lost";
+            players[1].handsWon += 1;
           };
           break;
         case "Scissor":
@@ -49,6 +50,7 @@ class Board extends Component {
     
             }else{
               players[0].result = "Lost";
+              players[1].handsWon += 1;
             };
             break;
          case "Paper":
@@ -60,6 +62,7 @@ class Board extends Component {
     
             }else{
               players[0].result = "Lost";
+              players[1].handsWon += 1;
             };
             break;
             default:
@@ -75,7 +78,7 @@ class Board extends Component {
     let players = [...this.state.players];
     
     players[0].currentHand = "Paper";
-    players[1].currentHand = hand[Math.floor(Math.random()* hand.length)];
+    players[1].currentHand = hand[Math.floor(Math.random()* 3)];
     this.setState({
       hand: this.state.hand + 1,
       players:players,
@@ -85,7 +88,7 @@ class Board extends Component {
     let players = [...this.state.players];
     
     players[0].currentHand = "Scissor";
-    players[1].currentHand = hand[Math.floor(Math.random()* hand.length)];
+    players[1].currentHand = hand[Math.floor(Math.random()* 3)];
     this.setState({
       hand: this.state.hand + 1,
       players:players,
@@ -95,7 +98,7 @@ class Board extends Component {
     let players = [...this.state.players];
     
     players[0].currentHand = "Rock";
-    players[1].currentHand = hand[Math.floor(Math.random()* hand.length)];
+    players[1].currentHand = hand[Math.floor(Math.random()* 3)];
     this.setState({
       hand: this.state.hand + 1,
       players:players,
@@ -108,6 +111,7 @@ class Board extends Component {
         rockHandler={this.rockHandler}
         paperHandler={this.paperHandler}
         scissorHandler={this.scissorHandler}
+        won={player.handsWon}
 
        />)
     });
